@@ -7,7 +7,7 @@
 
 package javax.cache.interceptor;
 
-import javax.interceptor.InterceptorBinding;
+import javax.enterprise.util.Nonbinding;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -24,10 +24,10 @@ import java.lang.annotation.Target;
  * null return values and thrown exceptions are never cached.
  *
  * @author Eric Dalquist
+ * @since 1.7
  */
-@Target( {ElementType.METHOD, ElementType.TYPE} )
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@InterceptorBinding
 public @interface CacheResult {
 
     /**
@@ -35,6 +35,7 @@ public @interface CacheResult {
      * <p/>
      * Defaults to ClassName.methodName
      */
+    @Nonbinding
     String cacheName() default "";
 
     /**
@@ -44,6 +45,7 @@ public @interface CacheResult {
      * <p/>
      * Defaults to false
      */
+    @Nonbinding
     boolean skipGet() default false;
 
     /**
@@ -51,10 +53,12 @@ public @interface CacheResult {
      * <p/>
      * Defaults to resolving the cache by name from the default {@link javax.cache.CacheManager}
      */
+    @Nonbinding
     Class<? extends CacheResolver> cacheResovler() default CacheResolver.class;
 
     /**
      */
+    @Nonbinding
     Class<? extends Annotation>[] cacheResolverQualifiers() default { };
 
     /**
@@ -63,9 +67,11 @@ public @interface CacheResult {
      * <p/>
      * Defaults to {@link DefaultCacheKeyGenerator}
      */
+    @Nonbinding
     Class<? extends CacheKeyGenerator> cacheKeyGenerator() default DefaultCacheKeyGenerator.class;
 
     /**
      */
+    @Nonbinding
     Class<? extends Annotation>[] cacheKeyGeneratorQualifiers() default { };
 }

@@ -6,11 +6,10 @@
  */
 
 /**
- This package contains listeners and scoping interfaces.
+ The javax.cache.spi package defines the classes and interfaces that are implemented by the
+ persistence provider for use by the {@link javax.cache.CacheManagerFactory} class
 
-
- @author Greg Luck
  @author Yannis Cosmadopoulos
  @since 1.7
  */
-package javax.cache.event;
+package javax.cache.spi;

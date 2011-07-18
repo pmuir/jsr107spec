@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
- * A Cache provides temporary storage for later fase retrieval.
+ * A Cache provides temporary storage for later fast retrieval.
  * <p/>
  * The interface is map-like and will be familiar. However the map-like
  * methods have been modified to enable efficient implementation of
@@ -42,7 +42,7 @@ import java.util.concurrent.Future;
  * @param <V> the type of mapped values
  * @author Greg Luck
  * @author Yannis Cosmadopoulos
- * @since 1.0
+ * @since 1.7
  */
 public interface Cache<K, V> extends Iterable<Cache.Entry<K, V>>, Lifecycle {
     /**
@@ -102,7 +102,7 @@ public interface Cache<K, V> extends Iterable<Cache.Entry<K, V>>, Lifecycle {
      * must be propagated on {@link java.util.concurrent.Future#get()} as a {@link java.util.concurrent.ExecutionException}
      * <p/>
      * If the "arg" argument is set, the arg object will be passed to the
-     * {@link CacheLoader#load(K, Object)} method.  The cache will not dereference the object. If
+     * {@link CacheLoader#load(Object, Object)} method.  The cache will not dereference the object. If
      * no "arg" value is provided a null will be passed to the load method.
      *
      * @param key the key
@@ -390,6 +390,16 @@ public interface Cache<K, V> extends Iterable<Cache.Entry<K, V>>, Lifecycle {
      * @return the name of the cache.
      */
     String getCacheName();
+
+    /**
+     * Gets the CacheManager managing this cache. For a newly created cache this will be null until
+     * it has been added to a CacheManager.
+     * <p/>
+     * A cache can be in only have one CacheManager.
+     *
+     * @return the manager or null if there is none
+     */
+    CacheManager getCacheManager();
 
     /**
      * A cache entry (key-value pair).

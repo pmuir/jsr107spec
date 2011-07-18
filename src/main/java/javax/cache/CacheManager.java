@@ -8,13 +8,28 @@
 package javax.cache;
 
 /**
- * A CacheManager is used for looking up Caches and controls their lifecycle.
+ * A CacheManager is used for looking up Caches and controls their lifecycle. It represents a collection of caches.
+ * To the extent that implementations have configuration at the CacheManager level, it is a way for these caches
+ * to share common configuration. For example a CacheManager might be clustered so all caches in that CacheManager
+ * will participate in the same cluster.
+ * <p/>
+ * CacheManagers are created by {@link CacheManagerFactory}.
+ * <p/>
+ * CacheManagers
  *
  * @author Greg Luck
  * @author Yannis Cosmadopoulos
- * @since 1.0
+ * @since 1.7
  */
 public interface CacheManager {
+
+    /**
+     * Get the name of this cache manager
+     *
+     * @return the name of this cache manager
+     */
+    String getName();
+
     /**
      * Adds an uninitialised {@link Cache} to the CacheManager and starts it.
      * If a cache with the same name has been previously added that cache will be stopped.
@@ -47,7 +62,7 @@ public interface CacheManager {
     /**
      * This method will return a UserTransaction.
      *
-     * @return the UserTransaction. This should be cast to {@link javax.transaction.UserTransaction}.
+     * @return the UserTransaction. This should be cast to javax.transaction.UserTransaction.
      */
     Object getUserTransaction();
 

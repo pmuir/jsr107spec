@@ -8,7 +8,7 @@
 package javax.cache;
 
 /**
- * Information on how a cache is configured. This information may be used.
+ * Information on how a cache is configured.
  *
  * A Cache may be constructed by {@link CacheManager} using a configuration instance.
  *
@@ -19,7 +19,7 @@ package javax.cache;
  *
  * @author Greg Luck
  * @author Yannis Cosmadopoulos
- * @since 1.0
+ * @since 1.7
  */
 public interface CacheConfiguration {
 
@@ -68,4 +68,18 @@ public interface CacheConfiguration {
      * @see #isStoreByValue()
      */
     void setStoreByValue(boolean storeByValue);
+
+    /**
+     * @return true if statistics collection is enabled
+     */
+    boolean isStatisticsEnabled();
+
+
+    /**
+     * Sets whether statistics gathering is set on this cache.
+     *
+     * @param enableStatistics true fo enable statistics, false to disable
+     */
+    void setStatisticsEnabled(boolean enableStatistics);
+
 }

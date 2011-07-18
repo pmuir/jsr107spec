@@ -8,7 +8,7 @@
 
 package javax.cache.interceptor;
 
-import javax.interceptor.InterceptorBinding;
+import javax.enterprise.util.Nonbinding;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -20,10 +20,10 @@ import java.lang.annotation.Target;
  * {@link javax.cache.Cache#remove(Object)} will be invoked on the specified cache.
  *
  * @author Eric Dalquist
+ * @since 1.7
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@InterceptorBinding
 public @interface CacheRemoveEntry {
 
     /**
@@ -31,6 +31,7 @@ public @interface CacheRemoveEntry {
      * <p/>
      * Defaults to ClassName.methodName
      */
+    @Nonbinding
     String cacheName() default "";
 
     /**
@@ -39,6 +40,7 @@ public @interface CacheRemoveEntry {
      * <p/>
      * Defaults to true.
      */
+    @Nonbinding
     boolean afterInvocation() default true;
 
     /**
@@ -46,6 +48,7 @@ public @interface CacheRemoveEntry {
      * <p/>
      * Defaults to resolving the cache by name from the default {@link javax.cache.CacheManager}
      */
+    @Nonbinding
     Class<? extends CacheResolver> cacheResovler() default CacheResolver.class;
 
     /**
@@ -53,5 +56,6 @@ public @interface CacheRemoveEntry {
      * <p/>
      * Defaults to {@link DefaultCacheKeyGenerator}
      */
+    @Nonbinding
     Class<? extends CacheKeyGenerator> cacheKeyGenerator() default DefaultCacheKeyGenerator.class;
 }
