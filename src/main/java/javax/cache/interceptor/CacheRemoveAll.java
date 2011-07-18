@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
  * @author Eric Dalquist
  * @since 1.7
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CacheRemoveAll {
 
